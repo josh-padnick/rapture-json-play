@@ -1,6 +1,6 @@
 /**********************************************************************************************\
 * Rapture JSON Library                                                                         *
-* Version 1.0.6                                                                                *
+* Version 1.0.7                                                                                *
 *                                                                                              *
 * The primary distribution site is                                                             *
 *                                                                                              *
@@ -26,6 +26,12 @@ import rapture.data._
 import play.api.libs.json._
 
 trait Extractors {
-  implicit val jsValueExtractor: JsonCastExtractor[JsValue] = JsonCastExtractor(PlayAst)
-  implicit val jsObjectExtractor: JsonCastExtractor[JsObject] = JsonCastExtractor(PlayAst)
+  implicit val jsValueExtractor: JsonCastExtractor[JsValue] =
+    JsonCastExtractor(PlayAst, DataTypes.Undefined)
+  
+  implicit val jsObjectExtractor: JsonCastExtractor[JsObject] =
+    JsonCastExtractor(PlayAst, DataTypes.Object)
+  
+  implicit val jsArrayExtractor: JsonCastExtractor[JsArray] =
+    JsonCastExtractor(PlayAst, DataTypes.Array)
 }
