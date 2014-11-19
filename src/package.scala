@@ -32,6 +32,6 @@ import play.api.libs.json._
 
 object `package` extends Extractors with Serializers {
 
-  implicit val playAst = PlayAst
-  implicit val playParser = PlayParser
+  implicit val implicitJsonAst = PlayAst
+  implicit val implicitJsonStringParser = PlayParser
 }

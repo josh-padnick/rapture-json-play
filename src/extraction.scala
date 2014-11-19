@@ -26,12 +26,12 @@ import rapture.data._
 import play.api.libs.json._
 
 trait Extractors {
-  implicit val jsValueExtractor: JsonCastExtractor[JsValue] =
+  implicit val playJsValueExtractor: JsonCastExtractor[JsValue] =
     JsonCastExtractor(PlayAst, DataTypes.Undefined)
   
-  implicit val jsObjectExtractor: JsonCastExtractor[JsObject] =
+  implicit val playJsObjectExtractor: JsonCastExtractor[JsObject] =
     JsonCastExtractor(PlayAst, DataTypes.Object)
   
-  implicit val jsArrayExtractor: JsonCastExtractor[JsArray] =
+  implicit val playJsArrayExtractor: JsonCastExtractor[JsArray] =
     JsonCastExtractor(PlayAst, DataTypes.Array)
 }
