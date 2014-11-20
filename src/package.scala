@@ -1,6 +1,6 @@
 /**********************************************************************************************\
 * Rapture JSON Library                                                                         *
-* Version 1.0.7                                                                                *
+* Version 1.0.8                                                                                *
 *                                                                                              *
 * The primary distribution site is                                                             *
 *                                                                                              *
@@ -32,6 +32,6 @@ import play.api.libs.json._
 
 object `package` extends Extractors with Serializers {
 
-  implicit val playAst = PlayAst
-  implicit val playParser = PlayParser
+  implicit val implicitJsonAst = PlayAst
+  implicit val implicitJsonStringParser = PlayParser
 }

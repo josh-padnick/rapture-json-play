@@ -1,6 +1,6 @@
 /**********************************************************************************************\
 * Rapture JSON Library                                                                         *
-* Version 1.0.7                                                                                *
+* Version 1.0.8                                                                                *
 *                                                                                              *
 * The primary distribution site is                                                             *
 *                                                                                              *
@@ -26,8 +26,9 @@ import rapture.data._
 import play.api.libs.json._
 
 trait Serializers {
-  implicit val jsValueSerializer: DirectJsonSerializer[JsValue] = DirectJsonSerializer(PlayAst)
+  implicit val playJsValueSerializer: DirectJsonSerializer[JsValue] =
+    DirectJsonSerializer(PlayAst)
   
-  implicit val jsObjectSerializer: DirectJsonSerializer[JsObject] =
-      DirectJsonSerializer(PlayAst)
+  implicit val playJsObjectSerializer: DirectJsonSerializer[JsObject] =
+    DirectJsonSerializer(PlayAst)
 }
