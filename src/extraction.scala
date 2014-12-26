@@ -1,6 +1,6 @@
 /**********************************************************************************************\
 * Rapture JSON Library                                                                         *
-* Version 1.0.8                                                                                *
+* Version 1.1.0                                                                                *
 *                                                                                              *
 * The primary distribution site is                                                             *
 *                                                                                              *
@@ -21,6 +21,7 @@
 package rapture.json.jsonBackends.play
 
 import rapture.json._
+import rapture.json.internal.JsonCastExtractor
 import rapture.data._
 
 import play.api.libs.json._

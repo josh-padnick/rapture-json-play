@@ -1,11 +1,11 @@
 object project extends ProjectSettings {
   def scalaVersion = "2.11.4"
-  def version = "1.0.8"
+  def version = "1.1.0"
   def name = "json-play"
   def description = "Rapture JSON/Play provides support the Spray parser in Rapture JSON"
   
   def dependencies = Seq(
-    "json" -> "1.0.8"
+    "json" -> "1.1.0"
   )
   
   def thirdPartyDependencies = Seq(
