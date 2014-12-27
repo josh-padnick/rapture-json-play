@@ -28,7 +28,7 @@ import play.api.libs.json._
 
 trait Extractors {
   implicit val playJsValueExtractor: JsonCastExtractor[JsValue] =
-    JsonCastExtractor(PlayAst, DataTypes.Undefined)
+    JsonCastExtractor(PlayAst, DataTypes.Any)
   
   implicit val playJsObjectExtractor: JsonCastExtractor[JsObject] =
     JsonCastExtractor(PlayAst, DataTypes.Object)
