@@ -29,9 +29,8 @@ import scala.collection.JavaConverters
 
 import play.api.libs.json._
 
+object `package` extends internal.Extractors with internal.Serializers {
 
-object `package` extends Extractors with Serializers {
-
-  implicit val implicitJsonAst = PlayAst
-  implicit val implicitJsonStringParser = PlayParser
+  implicit val implicitJsonAst = internal.PlayAst
+  implicit val implicitJsonStringParser = internal.PlayParser
 }
