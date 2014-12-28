@@ -18,7 +18,7 @@
 * either express or implied. See the License for the specific language governing permissions   *
 * and limitations under the License.                                                           *
 \**********************************************************************************************/
-package rapture.json.jsonBackends.play
+package rapture.json.jsonBackends.play.internal
 
 import rapture.json._
 import rapture.json.internal.JsonCastExtractor
