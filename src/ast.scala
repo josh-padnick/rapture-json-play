@@ -18,7 +18,7 @@
 * either express or implied. See the License for the specific language governing permissions   *
 * and limitations under the License.                                                           *
 \**********************************************************************************************/
-package rapture.json.jsonBackends.play.internal
+package rapture.json.jsonBackends.play
 
 import rapture.core._
 import rapture.json._
@@ -29,7 +29,7 @@ import scala.collection.JavaConverters
 
 import play.api.libs.json.{Json => PJson, _}
 
-object PlayAst extends JsonBufferAst {
+private[play] object PlayAst extends JsonBufferAst {
 
   override def toString = "<PlayAst>"
 
@@ -38,49 +38,49 @@ object PlayAst extends JsonBufferAst {
       case v: JsUndefined => throw null
       case v => v
     }
-    case _ => throw TypeMismatchException(getType(obj), DataTypes.Object)
+    case _ => throw TypeMismatchException(Some(getType(obj) -> DataTypes.Object))
   }
   
   override def getKeys(obj: Any): Iterator[String] =
     obj match {
       case obj: JsObject => obj.keys.iterator
-      case _ => throw TypeMismatchException(getType(obj), DataTypes.Object)
+      case _ => throw TypeMismatchException(Some(getType(obj) -> DataTypes.Object))
     }
   
   override def dereferenceArray(array: Any, element: Int): Any =
     array match {
       case v: JsValue => v(element)
-      case _ => throw TypeMismatchException(getType(array), DataTypes.Array)
+      case _ => throw TypeMismatchException(Some(getType(array) -> DataTypes.Array))
     }
 
   def getArray(array: Any): List[Any] = array match {
-    case v: JsValue => v.asOpt[List[JsValue]].getOrElse(throw TypeMismatchException(getType(v), DataTypes.Array))
-    case _ => throw TypeMismatchException(getType(array), DataTypes.Array)
+    case v: JsValue => v.asOpt[List[JsValue]].getOrElse(throw TypeMismatchException(Some(getType(v) -> DataTypes.Array)))
+    case _ => throw TypeMismatchException(Some(getType(array) -> DataTypes.Array))
   }
 
   def getBoolean(boolean: Any): Boolean = boolean match {
-    case v: JsValue => v.asOpt[Boolean].getOrElse(throw TypeMismatchException(getType(v), DataTypes.Boolean))
-    case _ => throw TypeMismatchException(getType(boolean), DataTypes.Boolean)
+    case v: JsValue => v.asOpt[Boolean].getOrElse(throw TypeMismatchException(Some(getType(v) -> DataTypes.Boolean)))
+    case _ => throw TypeMismatchException(Some(getType(boolean) -> DataTypes.Boolean))
   }
   
   def getBigDecimal(bigDecimal: Any): BigDecimal = bigDecimal match {
-    case v: JsValue => v.asOpt[BigDecimal].getOrElse(throw TypeMismatchException(getType(v), DataTypes.Number))
-    case _ => throw TypeMismatchException(getType(bigDecimal), DataTypes.Number)
+    case v: JsValue => v.asOpt[BigDecimal].getOrElse(throw TypeMismatchException(Some(getType(v) -> DataTypes.Number)))
+    case _ => throw TypeMismatchException(Some(getType(bigDecimal) -> DataTypes.Number))
   }
   
   def getDouble(double: Any): Double = double match {
-    case v: JsValue => v.asOpt[Double].getOrElse(throw TypeMismatchException(getType(v), DataTypes.Number))
-    case _ => throw TypeMismatchException(getType(double), DataTypes.Number)
+    case v: JsValue => v.asOpt[Double].getOrElse(throw TypeMismatchException(Some(getType(v) -> DataTypes.Number)))
+    case _ => throw TypeMismatchException(Some(getType(double) -> DataTypes.Number))
   }
   
   def getString(string: Any): String = string match {
-    case v: JsValue => v.asOpt[String].getOrElse(throw TypeMismatchException(getType(string), DataTypes.String))
-    case _ => throw TypeMismatchException(getType(string), DataTypes.String)
+    case v: JsValue => v.asOpt[String].getOrElse(throw TypeMismatchException(Some(getType(string) -> DataTypes.String)))
+    case _ => throw TypeMismatchException(Some(getType(string) -> DataTypes.String))
   }
   
   def getObject(obj: Any): Map[String, Any] = obj match {
-    case v: JsValue => v.asOpt[Map[String, JsValue]].getOrElse(throw TypeMismatchException(getType(v), DataTypes.Object))
-    case _ => throw TypeMismatchException(getType(obj), DataTypes.Object)
+    case v: JsValue => v.asOpt[Map[String, JsValue]].getOrElse(throw TypeMismatchException(Some(getType(v) -> DataTypes.Object)))
+    case _ => throw TypeMismatchException(Some(getType(obj) -> DataTypes.Object))
   }
   
   def setObjectValue(obj: Any, name: String, value: Any): Any =
