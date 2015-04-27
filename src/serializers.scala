@@ -18,15 +18,14 @@
 * either express or implied. See the License for the specific language governing permissions   *
 * and limitations under the License.                                                           *
 \**********************************************************************************************/
-package rapture.json.jsonBackends.play.internal
+package rapture.json.jsonBackends.play
 
 import rapture.json._
-import rapture.json.internal.DirectJsonSerializer
 import rapture.data._
 
 import play.api.libs.json._
 
-trait Serializers {
+private[play] trait Serializers {
   implicit val playJsValueSerializer: DirectJsonSerializer[JsValue] =
     DirectJsonSerializer(PlayAst)
   

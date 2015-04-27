@@ -18,7 +18,7 @@
 * either express or implied. See the License for the specific language governing permissions   *
 * and limitations under the License.                                                           *
 \**********************************************************************************************/
-package rapture.json.jsonBackends.play.internal
+package rapture.json.jsonBackends.play
 
 import rapture.core._
 import rapture.json._
@@ -29,13 +29,13 @@ import scala.collection.JavaConverters
 
 import play.api.libs.json.{Json => PJson, _}
 
-object PlayAst extends JsonBufferAst {
+private[play] object PlayAst extends JsonBufferAst {
 
   override def toString = "<PlayAst>"
 
   override def dereferenceObject(obj: Any, element: String): Any = obj match {
     case obj: JsValue => obj \ element match {
-      case v: JsUndefined => throw null
+      case v: JsUndefined => throw MissingValueException()
       case v => v
     }
     case _ => throw TypeMismatchException(getType(obj), DataTypes.Object)

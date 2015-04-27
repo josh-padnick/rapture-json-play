@@ -18,7 +18,7 @@
 * either express or implied. See the License for the specific language governing permissions   *
 * and limitations under the License.                                                           *
 \**********************************************************************************************/
-package rapture.json.jsonBackends.play.internal
+package rapture.json.jsonBackends.play
 
 import rapture.core._
 import rapture.json._
@@ -29,7 +29,7 @@ import scala.collection.JavaConverters
 
 import play.api.libs.json.{Json => PJson, _}
 
-object PlayParser extends Parser[String, JsonBufferAst] {
+private[play] object PlayParser extends Parser[String, JsonBufferAst] {
   val ast = PlayAst
   def parse(s: String): Option[Any] =
     try Some(PJson.parse(s)) catch { case e: Exception => None }
