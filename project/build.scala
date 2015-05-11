@@ -20,7 +20,7 @@
 \**********************************************************************************************/
 
 import sbt._
-import Keys._
+import sbt.Keys._
 
 trait ProjectSettings {
   def scalaVersion: String
@@ -37,7 +37,12 @@ object RaptureBuild extends Build {
 
   def proj: ProjectSettings = project
 
-  lazy val root = Project(s"rapture-${proj.name}", file("."))
+  val buildResolvers  = resolvers ++= Seq(
+    "Maven Central" at "https://repo1.maven.org/maven2/",
+    "Typesafe repository" at "https://repo.typesafe.com/typesafe/releases/"
+  )
+
+  lazy val root = Project(s"rapture-${proj.name}", file(".")).settings(buildResolvers:_*)
 
   override val settings = super.settings ++ Seq(
     name := s"rapture-${proj.name}",
